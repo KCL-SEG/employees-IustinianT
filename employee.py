@@ -21,7 +21,7 @@ class Employee:
         self.pay_string = ""
 
     def get_pay(self):
-        self.pay_string = f"{self.name} works on a "
+        self.pay_string = f"^{self.name} works on a "
         total_pay = 0
         if self.contract.get_type() == "hourly":
             total_pay += self.contract.get_amount()*self.hours_worked
@@ -36,7 +36,7 @@ class Employee:
             total_pay += self.bonus
             self.pay_string += f" and receives a bonus commission of {self.bonus}"
 
-        self.pay_string += f".  Their total pay is {total_pay}."
+        self.pay_string += f".\s+Their total pay is {total_pay}.$"
 
         return self.pay_string
 
