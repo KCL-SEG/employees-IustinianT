@@ -18,21 +18,30 @@ class Employee:
         self.hours_worked = hours
         self.contracts = contracts
         self.bonus = bonus
+        self.pay_string = ""
 
     def get_pay(self):
+        self.pay_string = f"{self.name} works on a "
         total_pay = 0
         if self.contract.get_type() == "hourly":
             total_pay += self.contract.get_amount()*self.hours_worked
+            self.pay_string += f"contract of {self.hours_worked} hours at {self.contract.get_amount()}/hour"
         elif self.contract.get_type() == "monthly":
             total_pay += self.contract.get_amount()
+            self.pay_string += f"monthly salary of {self.contract.get_amount()}"
         if self.contracts:
             total_pay += self.contracts[0]*self.contracts[1]
+            self.pay_string += f" and receives a commission for {self.contracts[0]} contract(s) at {self.contracts[1]}/contract"
         if self.bonus:
             total_pay += self.bonus
-        return total_pay
+            self.pay_string += f" and receives a bonus commission of {self.bonus}"
+
+        self.pay_string += f".  Their total pay is {total_pay}."
+
+        return self.pay_string
 
     def __str__(self):
-        return self.name
+        return self.get_pay()
 
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
