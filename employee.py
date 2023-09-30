@@ -38,10 +38,12 @@ class Employee:
 
         self.pay_string += f".\s+Their total pay is {total_pay}.$"
 
-        return self.pay_string
+        return total_pay
 
     def __str__(self):
-        return self.get_pay()
+        # to generate pay_string
+        self.get_pay()
+        return self.pay_string
 
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
